@@ -1,0 +1,6 @@
+framework module ZSTabPageView_Objc {
+  umbrella header "ZSTabPageView-Objc-umbrella.h"
+
+  export *
+  module * { export * }
+}

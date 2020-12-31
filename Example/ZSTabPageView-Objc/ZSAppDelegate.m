@@ -1,18 +1,24 @@
 //
 //  ZSAppDelegate.m
-//  ZSTabPageView-Objc
+//  ZSTabPageView
 //
 //  Created by zhangsen093725 on 12/30/2020.
 //  Copyright (c) 2020 zhangsen093725. All rights reserved.
 //
 
 #import "ZSAppDelegate.h"
+#import "ZSViewController.h"
 
 @implementation ZSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    [self.window makeKeyAndVisible];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[ZSViewController new]];
+    
     return YES;
 }
 

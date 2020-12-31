@@ -1,0 +1,16 @@
+PODS:
+  - ZSTabPageView-Objc (0.1.0)
+
+DEPENDENCIES:
+  - ZSTabPageView-Objc (from `../`)
+
+EXTERNAL SOURCES:
+  ZSTabPageView-Objc:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ZSTabPageView-Objc: f16935f301c366b7a01bd82d33bab4ddad6fe66c
+
+PODFILE CHECKSUM: 29f9825a0769fe44938397e7dc91fae2bb70fcc9
+
+COCOAPODS: 1.9.3
