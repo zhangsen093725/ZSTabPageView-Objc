@@ -205,7 +205,7 @@ static const NSInteger __displayLinkCount = 8;
     
     if (self.selectIndex == page) { return; }
     
-    if ([self.scrollDelegate respondsToSelector:@selector(zs_pageScrollViewzs_pageScrollViewzs_pageScrollView:didChangeIndex:)])
+    if ([self.scrollDelegate respondsToSelector:@selector(zs_pageScrollView:didChangeIndex:)])
     {
         [self.scrollDelegate zs_pageScrollView:scrollView didChangeIndex:page];
     }
