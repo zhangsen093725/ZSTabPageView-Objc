@@ -27,7 +27,7 @@
     {
         [self zs_setSelectedIndex:selectIndex];
         
-        [self zs_bindTabView:tabView tabCellClass:tabCellClass];
+        [self zs_bindTabView:tabView registerTabCellClass:tabCellClass];
         [self zs_bindPageView:pageView];
         
         tableView.delegate = self;

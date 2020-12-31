@@ -71,11 +71,11 @@
     [self.pageViewServe zs_setSelectedIndex:selectedIndex];
 }
 
-- (void)zs_bindTabView:(ZSTabView *)tabView tabCellClass:(Class)tabCellClass {
+- (void)zs_bindTabView:(ZSTabView *)tabView registerTabCellClass:(Class)tabCellClass {
     
     self.tabViewServe = [[ZSTabViewServe alloc] initWithSelectedIndex:self.selectIndex
                                                           bindTabView:tabView
-                                                    registerCellClass:tabCellClass];
+                                                    registerTabCellClass:tabCellClass];
     self.tabViewServe.delegate = self;
 }
 

@@ -28,7 +28,7 @@
 
 - (instancetype)initWithSelectedIndex:(NSInteger)selectIndex
                       bindTabPageView:(ZSTabPageView *)tabPageView
-                    registerCellClass:(Class)cellClass{
+                    registerTabCellClass:(Class)cellClass{
     
     if (self = [super init])
     {
@@ -71,7 +71,7 @@
     
     self.tabViewServe = [[ZSTabViewServe alloc] initWithSelectedIndex:self.selectIndex
                                                           bindTabView:tabView
-                                                    registerCellClass:tabCellClass];
+                                                    registerTabCellClass:tabCellClass];
     self.tabViewServe.delegate = self;
 }
 

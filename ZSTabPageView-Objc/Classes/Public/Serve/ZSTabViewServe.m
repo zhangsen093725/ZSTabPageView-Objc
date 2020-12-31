@@ -24,7 +24,7 @@
 
 - (instancetype)initWithSelectedIndex:(NSInteger)selectIndex
                           bindTabView:(ZSTabView *)tabView
-                    registerCellClass:(Class)cellClass {
+                    registerTabCellClass:(Class)cellClass {
     
     if (self = [super init])
     {

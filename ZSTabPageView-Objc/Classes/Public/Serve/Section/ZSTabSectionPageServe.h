@@ -55,7 +55,7 @@ typedef CGPoint (^ZSTabPagePlainDidScrollHandle) (UIScrollView *scrollView, CGPo
 /// 配置 TabViewServe 绑定 tabView
 /// @param tabView tabView
 /// @param tabCellClass tabCellClass 复用的cellClass，必须是ZSTabCollectionViewCell的子类
-- (void)zs_bindTabView:(ZSTabView *)tabView tabCellClass:(Class)tabCellClass;
+- (void)zs_bindTabView:(ZSTabView *)tabView registerTabCellClass:(Class)tabCellClass;
 
 /// 配置PageViewServe 绑定 pageView
 /// @param pageView pageView

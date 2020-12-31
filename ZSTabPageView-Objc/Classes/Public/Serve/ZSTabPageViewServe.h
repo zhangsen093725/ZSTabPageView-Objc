@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param tabPageView 与serve绑定的tabPageView
 - (instancetype)initWithSelectedIndex:(NSInteger)selectIndex
                       bindTabPageView:(ZSTabPageView *)tabPageView
-                    registerCellClass:(Class)cellClass;
+                    registerTabCellClass:(Class)cellClass;
 
 /// tab view item 样式Serve
 @property (nonatomic, strong, readonly) ZSTabViewServe *tabViewServe;

@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param cellClass 复用的cellClass，必须是ZSTabCollectionViewCell的子类
 - (instancetype)initWithSelectedIndex:(NSInteger)selectIndex
                           bindTabView:(ZSTabView *)tabView
-                    registerCellClass:(Class)cellClass;
+                    registerTabCellClass:(Class)cellClass;
 
 /// tab count
 @property (nonatomic, assign) NSInteger tabCount;

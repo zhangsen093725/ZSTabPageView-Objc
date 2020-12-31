@@ -45,7 +45,7 @@
     
     if (!_tabPageViewServe)
     {
-        _tabPageViewServe = [[ZSTabPageViewServe alloc] initWithSelectedIndex:0 bindTabPageView:self.tabPageView registerCellClass:ZSTabLabelCollectionViewCell.class];
+        _tabPageViewServe = [[ZSTabPageViewServe alloc] initWithSelectedIndex:0 bindTabPageView:self.tabPageView registerTabCellClass:ZSTabLabelCollectionViewCell.class];
         _tabPageViewServe.delegate = self;
         _tabPageViewServe.dataSource = self;
         _tabPageViewServe.tabViewServe.tabViewInset = UIEdgeInsetsMake(0, 20, 0, 20);
