@@ -73,6 +73,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// ZSPageViewScrollDelegate
 @property (nonatomic, weak) id<ZSPageViewScrollDelegate> scrollDelegate;
 
+/// pageView 的 contentView 缓存
+@property (nonatomic, strong, readonly) NSMutableDictionary<NSNumber *, UIView *> *cellContentCacheViewMap;
+
 /// page count
 @property (nonatomic, assign) NSInteger pageCount;
 

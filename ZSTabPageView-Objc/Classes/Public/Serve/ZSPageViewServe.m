@@ -76,6 +76,8 @@ static const NSInteger __displayLinkCount = 8;
 
 - (void)setSelectIndex:(NSInteger)selectIndex {
     
+    if (_selectIndex == selectIndex) { return; }
+    
     [self.delegate zs_pageViewWillAppearAtIndex:selectIndex];
     [self.delegate zs_pageViewWillDisappearAtIndex:_selectIndex];
     _selectIndex = selectIndex;
@@ -176,8 +178,9 @@ static const NSInteger __displayLinkCount = 8;
         view = [self.delegate zs_pageViewCellForItemAtIndex:_selectIndex];
         [_cellContentCacheViewMap setObject:view forKey:@(_selectIndex)];
         [cell.contentView addSubview:view];
-        view.frame = cell.contentView.bounds;
     }
+    
+    view.frame = cell.contentView.bounds;
 }
 
 # pragma mark - UIScrollViewDelegate
@@ -246,6 +249,7 @@ static const NSInteger __displayLinkCount = 8;
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class]) forIndexPath:indexPath];
     
     cell.exclusiveTouch = YES;
+    cell.contentView.frame = cell.bounds;
     
     for (UIView *subView in cell.contentView.subviews)
     {
