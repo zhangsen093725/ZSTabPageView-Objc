@@ -26,9 +26,10 @@
 
 - (ZSTabPagePlainDidScrollHandle)tabPagePlainDidScrollHandle {
     
+    __weak typeof(self)weak_self = self;
     return ^CGPoint(UIScrollView * _Nonnull scrollView, CGPoint cacheContentOffset) {
         
-        if (self.isShouldPageScroll == NO)
+        if (weak_self.isShouldPageScroll == NO)
         {
             scrollView.contentOffset = cacheContentOffset;
             return cacheContentOffset;
@@ -36,8 +37,8 @@
         
         if (scrollView.contentOffset.y <= 0)
         {
-            self.shouldBaseScroll = YES;
-            self.shouldPageScroll = NO;
+            weak_self.shouldBaseScroll = YES;
+            weak_self.shouldPageScroll = NO;
             scrollView.contentOffset = CGPointZero;
             return CGPointZero;
         }
