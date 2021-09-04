@@ -36,9 +36,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// scrollView 将要滚动，手指放上
 /// @param scrollView 当前滚动的ScrollView
-- (void)zs_pageViewWillBeginDecelerating:(UIScrollView *)scrollView;
+- (void)zs_pageViewWillBeginDragging:(UIScrollView *)scrollView;
 
 /// scrollView 滚动结束，手指离开
+/// @param scrollView 当前滚动的ScrollView
+- (void)zs_pageViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+
+/// scrollView 将要开始减速
+/// @param scrollView 当前滚动的ScrollView
+- (void)zs_pageViewWillBeginDecelerating:(UIScrollView *)scrollView;
+
+/// scrollView 减速完成
 /// @param scrollView 当前滚动的ScrollView
 - (void)zs_pageViewDidEndDecelerating:(UIScrollView *)scrollView;
 

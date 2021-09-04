@@ -215,7 +215,7 @@ static const NSInteger __displayLinkCount = 8;
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
- 
+    
     [self stopDisplayLink];
     self.displayLinkCount = __displayLinkCount;
     self.pageViewScrollToIndexEnable = NO;
@@ -234,6 +234,22 @@ static const NSInteger __displayLinkCount = 8;
     if ([self.scrollDelegate respondsToSelector:@selector(zs_pageViewDidEndDecelerating:)])
     {
         [self.scrollDelegate zs_pageViewDidEndDecelerating:scrollView];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+ 
+    if ([self.scrollDelegate respondsToSelector:@selector(zs_pageViewWillBeginDragging:)])
+    {
+        [self.scrollDelegate zs_pageViewWillBeginDragging:scrollView];
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+    if ([self.scrollDelegate respondsToSelector:@selector(zs_pageViewDidEndDragging:willDecelerate:)])
+    {
+        [self.scrollDelegate zs_pageViewDidEndDragging:scrollView willDecelerate:decelerate];
     }
 }
 
