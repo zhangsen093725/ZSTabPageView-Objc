@@ -86,6 +86,12 @@ static const NSInteger __displayLinkCount = 8;
 - (void)setPageCount:(NSInteger)pageCount {
     
     _pageCount = pageCount;
+    
+    if (pageCount <= 0)
+    {
+        self.selectIndex = 0;
+    }
+    
     [self zs_clearCache];
     [self.pageView reloadData];
     [self zs_setSelectedIndex:self.selectIndex];

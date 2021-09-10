@@ -60,7 +60,14 @@
 - (void)setTabCount:(NSInteger)tabCount {
     
     _tabCount = tabCount;
-    self.selectIndex = self.selectIndex < tabCount ? self.selectIndex : tabCount - 1;
+    if (tabCount > 0)
+    {
+        self.selectIndex = self.selectIndex < tabCount ? self.selectIndex : tabCount - 1;
+    }
+    else
+    {
+        self.selectIndex = 0;
+    }
     self.tabViewServe.tabCount = tabCount;
     self.pageViewServe.pageCount = tabCount;
 }
