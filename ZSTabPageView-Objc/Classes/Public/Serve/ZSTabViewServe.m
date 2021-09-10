@@ -45,7 +45,7 @@
     if (tabCount > 0)
     {
         self.selectIndex = self.selectIndex < tabCount ? self.selectIndex : tabCount - 1;
-        [self.tabView ty_setSelectedIndex:self.selectIndex animation:NO];
+        [self.tabView zs_setSelectedIndex:self.selectIndex animation:NO];
     }
     else
     {
