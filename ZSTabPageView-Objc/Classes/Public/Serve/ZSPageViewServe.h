@@ -75,6 +75,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当前选中的index
 @property (nonatomic, assign, readonly) NSInteger selectIndex;
 
+/// page insert
+@property (nonatomic, assign) UIEdgeInsets pageViewInset;
+
 /// ZSPageViewServeDelegate
 @property (nonatomic, weak) id<ZSPageViewServeDelegate> delegate;
 
@@ -97,6 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 设置 selectedIndex
 /// @param selectedIndex selectedIndex
 - (void)zs_setSelectedIndex:(NSInteger)selectedIndex;
+- (void)zs_setSelectedIndex:(NSInteger)selectedIndex animation:(BOOL)isAnimation;
 
 @end
 

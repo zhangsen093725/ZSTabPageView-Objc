@@ -73,6 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 设置 selectedIndex
 /// @param selectedIndex selectedIndex
 - (void)zs_setSelectedIndex:(NSInteger)selectedIndex;
+- (void)zs_setSelectedIndex:(NSInteger)selectedIndex animation:(BOOL)isAnimation;
 
 @end
 

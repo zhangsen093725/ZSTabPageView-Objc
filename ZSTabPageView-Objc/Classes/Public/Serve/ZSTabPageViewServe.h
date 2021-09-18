@@ -47,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 设置 selectedIndex
 /// @param selectedIndex selectedIndex
 - (void)zs_setSelectedIndex:(NSInteger)selectedIndex;
+- (void)zs_setSelectedIndex:(NSInteger)selectedIndex tabAnimation:(BOOL)isTabAnimation pageAnimation:(BOOL)isPageAnimation;
 
 /// 配置TabViewServe
 /// @param tabView tabView

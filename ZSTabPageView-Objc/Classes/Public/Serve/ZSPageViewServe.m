@@ -97,6 +97,12 @@ static const NSInteger __displayLinkCount = 8;
     [self zs_setSelectedIndex:self.selectIndex];
 }
 
+- (void)setPageViewInset:(UIEdgeInsets)pageViewInset {
+    
+    _pageViewInset = pageViewInset;
+    [self.pageView reloadData];
+}
+
 - (void)zs_configPageView:(ZSPageView *)pageView {
     
     [pageView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class])];
@@ -109,6 +115,11 @@ static const NSInteger __displayLinkCount = 8;
 
 - (void)zs_setSelectedIndex:(NSInteger)selectedIndex {
     
+    [self zs_setSelectedIndex:selectedIndex animation:NO];
+}
+
+- (void)zs_setSelectedIndex:(NSInteger)selectedIndex animation:(BOOL)isAnimation {
+    
     if (self.pageCount <= 0) { return; }
     
     NSInteger index = selectedIndex > 0 ? selectedIndex : 0;
@@ -118,7 +129,7 @@ static const NSInteger __displayLinkCount = 8;
     
     if (self.pageViewScrollToIndexEnable == NO) { return; }
     
-    [self.pageView zs_setSelectedIndex:index animation:NO];
+    [self.pageView zs_setSelectedIndex:index animation:isAnimation];
     [self.pageView layoutIfNeeded];
     
     [self stopDisplayLink];

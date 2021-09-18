@@ -74,6 +74,11 @@
 
 - (void)zs_setSelectedIndex:(NSInteger)selectedIndex {
     
+    [self zs_setSelectedIndex:selectedIndex animation:YES];
+}
+
+- (void)zs_setSelectedIndex:(NSInteger)selectedIndex animation:(BOOL)isAnimation {
+    
     if (self.tabCount <= 0) { return; }
     
     NSInteger index = selectedIndex > 0 ? selectedIndex : 0;
@@ -81,7 +86,7 @@
     
     self.selectIndex = index;
     
-    [self.tabView zs_setSelectedIndex:index animation:YES];
+    [self.tabView zs_setSelectedIndex:index animation:isAnimation];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath

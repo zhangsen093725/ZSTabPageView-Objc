@@ -68,9 +68,14 @@
 
 - (void)zs_setSelectedIndex:(NSInteger)selectedIndex {
     
+    [self zs_setSelectedIndex:selectedIndex tabAnimation:YES pageAnimation:NO];
+}
+
+- (void)zs_setSelectedIndex:(NSInteger)selectedIndex tabAnimation:(BOOL)isTabAnimation pageAnimation:(BOOL)isPageAnimation {
+    
     _selectIndex = selectedIndex;
-    [self.tabViewServe zs_setSelectedIndex:selectedIndex];
-    [self.pageViewServe zs_setSelectedIndex:selectedIndex];
+    [self.tabViewServe zs_setSelectedIndex:selectedIndex animation:isTabAnimation];
+    [self.pageViewServe zs_setSelectedIndex:selectedIndex animation:isPageAnimation];
 }
 
 - (void)zs_configTabViewServe:(ZSTabView *)tabView
