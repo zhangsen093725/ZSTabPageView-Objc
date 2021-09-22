@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface ZSTabPageViewServe : NSObject<ZSTabViewServeDelegate, ZSPageViewServeDelegate, ZSPageViewServeDataSource>
+@interface ZSTabPageViewServe : NSObject<ZSTabViewServeDelegate, ZSPageViewServeDelegate, ZSTabPageViewServeDelegate>
 
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;

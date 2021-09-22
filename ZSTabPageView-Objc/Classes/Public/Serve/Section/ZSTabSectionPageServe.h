@@ -25,7 +25,7 @@ typedef CGPoint (^ZSTabPagePlainDidScrollHandle) (UIScrollView *scrollView, CGPo
 
 @end
 
-@interface ZSTabSectionPageServe : NSObject<ZSTabViewServeDelegate, ZSPageViewServeDataSource>
+@interface ZSTabSectionPageServe : NSObject<ZSTabViewServeDelegate, ZSPageViewServeDelegate>
 
 + (instancetype)new NS_UNAVAILABLE;
 

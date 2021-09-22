@@ -47,14 +47,10 @@
     };
 }
 
-- (void)setDelegate:(id<ZSPageViewServeDelegate>)delegate {
-    
-    self.pageViewServe.delegate = delegate;
-}
-
-- (void)setDataSource:(id<ZSTabViewServeDataSource>)dataSource {
+- (void)setDataSource:(id<ZSTabSectionPageServeDataSource>)dataSource {
     
     self.tabViewServe.dataSource = dataSource;
+    self.pageViewServe.dataSource = dataSource;
 }
 
 - (void)setTabCount:(NSInteger)tabCount {
@@ -93,7 +89,7 @@
     
     self.pageViewServe = [[ZSPageViewServe alloc] initWithSelectedIndex:self.selectIndex
                                                            bindPageView:pageView];
-    self.pageViewServe.dataSource = self;
+    self.pageViewServe.delegate = self;
 }
 
 # pragma mark - ZSPageViewScrollDelegate
@@ -118,7 +114,6 @@
     }
 }
 
-# pragma mark - ZSPageViewScrollDelegate
 - (void)zs_pageViewWillDisappearAtIndex:(NSInteger)index {
     
     if ([self.delegate respondsToSelector:@selector(zs_pageViewWillDisappearAtIndex:)])
@@ -132,6 +127,38 @@
     if ([self.delegate respondsToSelector:@selector(zs_pageViewWillAppearAtIndex:)])
     {
         [self.delegate zs_pageViewWillAppearAtIndex:index];
+    }
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+
+    if ([self.delegate respondsToSelector:@selector(scrollViewWillBeginDecelerating:)])
+    {
+        [self.delegate scrollViewWillBeginDecelerating:scrollView];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)])
+    {
+        [self.delegate scrollViewDidEndDecelerating:scrollView];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+ 
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)])
+    {
+        [self.delegate scrollViewDidEndDecelerating:scrollView];
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)])
+    {
+        [self.delegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
     }
 }
 

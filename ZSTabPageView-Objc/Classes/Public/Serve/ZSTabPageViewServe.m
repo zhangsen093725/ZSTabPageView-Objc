@@ -41,13 +41,9 @@
     return self;
 }
 
-- (void)setDelegate:(id<ZSPageViewServeDelegate>)delegate {
+- (void)setDataSource:(id<ZSTabPageViewServeDataSource>)dataSource {
     
-    self.pageViewServe.delegate = delegate;
-}
-
-- (void)setDataSource:(id<ZSTabViewServeDataSource>)dataSource {
-    
+    self.pageViewServe.dataSource = dataSource;
     self.tabViewServe.dataSource = dataSource;
 }
 
@@ -123,6 +119,38 @@
     if ([self.delegate respondsToSelector:@selector(zs_pageViewWillAppearAtIndex:)])
     {
         [self.delegate zs_pageViewWillAppearAtIndex:index];
+    }
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+
+    if ([self.delegate respondsToSelector:@selector(scrollViewWillBeginDecelerating:)])
+    {
+        [self.delegate scrollViewWillBeginDecelerating:scrollView];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)])
+    {
+        [self.delegate scrollViewDidEndDecelerating:scrollView];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+ 
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)])
+    {
+        [self.delegate scrollViewDidEndDecelerating:scrollView];
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)])
+    {
+        [self.delegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
     }
 }
 
