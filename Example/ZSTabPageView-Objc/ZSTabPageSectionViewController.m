@@ -9,7 +9,7 @@
 #import "ZSTabPageSectionViewController.h"
 #import "ZSTableViewController.h"
 
-@interface ZSTabPageSectionViewController ()<ZSPageViewServeDelegate, ZSTabViewServeDataSource>
+@interface ZSTabPageSectionViewController ()<ZSTabPageViewServeDelegate, ZSTabPageViewServeDataSource>
 
 @property (nonatomic, strong) ZSTabSectionPageTableView *tableView;
 @property (nonatomic, strong) ZSTabSectionPageTableViewServe *tabPageViewServe;

@@ -14,7 +14,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef CGPoint (^ZSTabPagePlainDidScrollHandle) (UIScrollView *scrollView, CGPoint cacheContentOffset);
 
-@interface ZSTabSectionPageServe : NSObject<ZSTabViewServeDelegate, ZSPageViewScrollDelegate>
+
+@protocol ZSTabSectionPageServeDelegate <ZSTabViewServeDelegate, ZSPageViewServeDelegate>
+
+@end
+
+
+@protocol ZSTabSectionPageServeDataSource <ZSTabViewServeDataSource, ZSPageViewServeDataSource>
+
+
+@end
+
+@interface ZSTabSectionPageServe : NSObject<ZSTabViewServeDelegate, ZSPageViewServeDataSource>
 
 + (instancetype)new NS_UNAVAILABLE;
 
@@ -28,10 +39,10 @@ typedef CGPoint (^ZSTabPagePlainDidScrollHandle) (UIScrollView *scrollView, CGPo
 @property (nonatomic, assign, readonly) NSInteger selectIndex;
 
 /// ZSPageViewServeDelegate
-@property (nonatomic, weak) id<ZSPageViewServeDelegate> delegate;
+@property (nonatomic, weak) id<ZSTabSectionPageServeDelegate> delegate;
 
 /// ZSTabViewServeDataSource
-@property (nonatomic, weak) id<ZSTabViewServeDataSource> dataSource;
+@property (nonatomic, weak) id<ZSTabSectionPageServeDataSource> dataSource;
 
 /// tab count
 @property (nonatomic, assign) NSInteger tabCount;

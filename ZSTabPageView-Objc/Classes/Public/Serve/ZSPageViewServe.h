@@ -9,12 +9,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol ZSPageViewServeDelegate <NSObject>
+@protocol ZSPageViewServeDataSource <NSObject>
 
 /// Page 需要展示的View
 /// @param index 当前Page的索引
 - (UIView *)zs_pageViewCellForItemAtIndex:(NSInteger)index;
 
+@end
+
+
+@protocol ZSPageViewServeDelegate <UIScrollViewDelegate>
+
+@optional
 /// Page 将要消失
 /// @param index 将要消失的索引
 - (void)zs_pageViewWillDisappearAtIndex:(NSInteger)index;
@@ -22,33 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// Page 将要显示
 /// @param index 将要显示的索引
 - (void)zs_pageViewWillAppearAtIndex:(NSInteger)index;
-
-@end
-
-
-@protocol ZSPageViewScrollDelegate <NSObject>
-
-@optional
-
-/// scrollView 滚动的回调
-/// @param scrollView 当前滚动的ScrollView
-- (void)zs_pageViewDidScroll:(UIScrollView *)scrollView;
-
-/// scrollView 将要滚动，手指放上
-/// @param scrollView 当前滚动的ScrollView
-- (void)zs_pageViewWillBeginDragging:(UIScrollView *)scrollView;
-
-/// scrollView 滚动结束，手指离开
-/// @param scrollView 当前滚动的ScrollView
-- (void)zs_pageViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
-
-/// scrollView 将要开始减速
-/// @param scrollView 当前滚动的ScrollView
-- (void)zs_pageViewWillBeginDecelerating:(UIScrollView *)scrollView;
-
-/// scrollView 减速完成
-/// @param scrollView 当前滚动的ScrollView
-- (void)zs_pageViewDidEndDecelerating:(UIScrollView *)scrollView;
 
 /// Page 改变index
 /// @param scrollView scrollView
@@ -82,13 +61,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<ZSPageViewServeDelegate> delegate;
 
 /// ZSPageViewScrollDelegate
-@property (nonatomic, weak) id<ZSPageViewScrollDelegate> scrollDelegate;
-
-/// pageView 的 contentView 缓存
-@property (nonatomic, strong, readonly) NSMutableDictionary<NSNumber *, UIView *> *cellContentCacheViewMap;
+@property (nonatomic, weak) id<ZSPageViewServeDataSource> dataSource;
 
 /// page count
 @property (nonatomic, assign) NSInteger pageCount;
+
+/// pageView 的 contentView 缓存 @{index : view}
+@property (nonatomic, strong, readonly) NSMutableDictionary<NSNumber *, UIView *> *cellContentCacheViewMap;
 
 /// 清理缓存
 - (void)zs_clearCache;

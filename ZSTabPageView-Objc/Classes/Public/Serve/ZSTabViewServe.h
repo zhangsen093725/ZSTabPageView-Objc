@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ZSTabViewServeDelegate <NSObject>
 
+@optional
 /// tabView 点击回调
 /// @param index 当前点击的索引
 - (void)zs_tabViewDidSelectItemAtIndex:(NSInteger)index;

@@ -12,7 +12,7 @@
 #import "ZSTabPageViewServe.h"
 #import "ZSTabLabelCollectionViewCell.h"
 
-@interface ZSTabPageViewController ()<ZSPageViewServeDelegate, ZSTabViewServeDataSource>
+@interface ZSTabPageViewController ()<ZSTabPageViewServeDelegate, ZSTabPageViewServeDataSource>
 
 @property (nonatomic, strong) ZSTabPageView *tabPageView;
 

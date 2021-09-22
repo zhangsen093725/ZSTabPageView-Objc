@@ -60,6 +60,7 @@
 - (void)setTabCount:(NSInteger)tabCount {
     
     _tabCount = tabCount;
+    
     if (tabCount > 0)
     {
         self.selectIndex = self.selectIndex < tabCount ? self.selectIndex : tabCount - 1;
@@ -68,6 +69,7 @@
     {
         self.selectIndex = 0;
     }
+    
     self.tabViewServe.tabCount = tabCount;
     self.pageViewServe.pageCount = tabCount;
 }
@@ -91,7 +93,7 @@
     
     self.pageViewServe = [[ZSPageViewServe alloc] initWithSelectedIndex:self.selectIndex
                                                            bindPageView:pageView];
-    self.pageViewServe.scrollDelegate = self;
+    self.pageViewServe.dataSource = self;
 }
 
 # pragma mark - ZSPageViewScrollDelegate
@@ -100,6 +102,11 @@
     if (index < self.tabCount)
     {
         [self zs_setSelectedIndex:index];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(zs_pageScrollView:didChangeIndex:)])
+    {
+        [self.delegate zs_pageScrollView:scrollView didChangeIndex:index];
     }
     
     if (CGSizeEqualToSize(scrollView.contentSize, CGSizeZero)) { return; }
@@ -111,10 +118,32 @@
     }
 }
 
+# pragma mark - ZSPageViewScrollDelegate
+- (void)zs_pageViewWillDisappearAtIndex:(NSInteger)index {
+    
+    if ([self.delegate respondsToSelector:@selector(zs_pageViewWillDisappearAtIndex:)])
+    {
+        [self.delegate zs_pageViewWillDisappearAtIndex:index];
+    }
+}
+
+- (void)zs_pageViewWillAppearAtIndex:(NSInteger)index {
+ 
+    if ([self.delegate respondsToSelector:@selector(zs_pageViewWillAppearAtIndex:)])
+    {
+        [self.delegate zs_pageViewWillAppearAtIndex:index];
+    }
+}
+
 # pragma mark - ZSTabViewServeDelegate
 - (void)zs_tabViewDidSelectItemAtIndex:(NSInteger)index {
     
     [self zs_setSelectedIndex:index];
+    
+    if ([self.delegate respondsToSelector:@selector(zs_tabViewDidSelectItemAtIndex:)])
+    {
+        [self.delegate zs_tabViewDidSelectItemAtIndex:index];
+    }
 }
 
 @end

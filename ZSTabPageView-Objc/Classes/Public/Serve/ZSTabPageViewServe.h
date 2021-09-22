@@ -11,7 +11,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZSTabPageViewServe : NSObject<ZSTabViewServeDelegate, ZSPageViewScrollDelegate>
+@protocol ZSTabPageViewServeDelegate <ZSTabViewServeDelegate, ZSPageViewServeDelegate>
+
+@end
+
+
+@protocol ZSTabPageViewServeDataSource <ZSTabViewServeDataSource, ZSPageViewServeDataSource>
+
+
+@end
+
+
+@interface ZSTabPageViewServe : NSObject<ZSTabViewServeDelegate, ZSPageViewServeDelegate, ZSPageViewServeDataSource>
 
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
@@ -36,10 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) NSInteger selectIndex;
 
 /// ZSPageViewServeDelegate
-@property (nonatomic, weak) id<ZSPageViewServeDelegate> delegate;
+@property (nonatomic, weak) id<ZSTabPageViewServeDelegate> delegate;
 
 /// ZSTabViewServeDataSource
-@property (nonatomic, weak) id<ZSTabViewServeDataSource> dataSource;
+@property (nonatomic, weak) id<ZSTabPageViewServeDataSource> dataSource;
 
 /// tab count
 @property (nonatomic, assign) NSInteger tabCount;

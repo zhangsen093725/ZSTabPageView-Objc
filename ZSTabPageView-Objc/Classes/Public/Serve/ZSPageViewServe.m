@@ -12,7 +12,7 @@ static const NSInteger __displayLinkCount = 8;
 
 @interface ZSPageViewServe ()
 
-/// TYPageVie 是否允许 ScrollToIndex
+/// ZSPageVie 是否允许 ScrollToIndex
 @property (nonatomic, assign) BOOL pageViewScrollToIndexEnable;
 
 /// displayLink
@@ -171,7 +171,7 @@ static const NSInteger __displayLinkCount = 8;
     
     if (self.displayLinkCount <= 0)
     {
-        [self ty_showCellContentCacheView];
+        [self zs_showCellContentCacheView];
         [self stopDisplayLink];
     }
 }
@@ -182,7 +182,7 @@ static const NSInteger __displayLinkCount = 8;
     self.displayLink = nil;
 }
 
-- (void)ty_showCellContentCacheView {
+- (void)zs_showCellContentCacheView {
     
     UICollectionViewCell *cell = [self.pageView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectIndex inSection:0]];
     
@@ -192,7 +192,7 @@ static const NSInteger __displayLinkCount = 8;
     
     if (view == nil)
     {
-        view = [self.delegate zs_pageViewCellForItemAtIndex:_selectIndex];
+        view = [self.dataSource zs_pageViewCellForItemAtIndex:_selectIndex];
         [_cellContentCacheViewMap setObject:view forKey:@(_selectIndex)];
         [cell.contentView addSubview:view];
     }
@@ -203,9 +203,9 @@ static const NSInteger __displayLinkCount = 8;
 # pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    if ([self.scrollDelegate respondsToSelector:@selector(zs_pageViewDidScroll:)])
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidScroll:)])
     {
-        [self.scrollDelegate zs_pageViewDidScroll:scrollView];
+        [self.delegate scrollViewDidScroll:scrollView];
     }
     
     if (self.pageViewScrollToIndexEnable == YES) { return; }
@@ -225,9 +225,9 @@ static const NSInteger __displayLinkCount = 8;
     
     if (self.selectIndex == page) { return; }
     
-    if ([self.scrollDelegate respondsToSelector:@selector(zs_pageScrollView:didChangeIndex:)])
+    if ([self.delegate respondsToSelector:@selector(zs_pageScrollView:didChangeIndex:)])
     {
-        [self.scrollDelegate zs_pageScrollView:scrollView didChangeIndex:page];
+        [self.delegate zs_pageScrollView:scrollView didChangeIndex:page];
     }
 }
 
@@ -237,9 +237,9 @@ static const NSInteger __displayLinkCount = 8;
     self.displayLinkCount = __displayLinkCount;
     self.pageViewScrollToIndexEnable = NO;
     
-    if ([self.scrollDelegate respondsToSelector:@selector(zs_pageViewWillBeginDecelerating:)])
+    if ([self.delegate respondsToSelector:@selector(scrollViewWillBeginDecelerating:)])
     {
-        [self.scrollDelegate zs_pageViewWillBeginDecelerating:scrollView];
+        [self.delegate scrollViewWillBeginDecelerating:scrollView];
     }
 }
 
@@ -248,25 +248,25 @@ static const NSInteger __displayLinkCount = 8;
     [self startDisplayLink];
     self.pageViewScrollToIndexEnable = YES;
     
-    if ([self.scrollDelegate respondsToSelector:@selector(zs_pageViewDidEndDecelerating:)])
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)])
     {
-        [self.scrollDelegate zs_pageViewDidEndDecelerating:scrollView];
+        [self.delegate scrollViewDidEndDecelerating:scrollView];
     }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
  
-    if ([self.scrollDelegate respondsToSelector:@selector(zs_pageViewWillBeginDragging:)])
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)])
     {
-        [self.scrollDelegate zs_pageViewWillBeginDragging:scrollView];
+        [self.delegate scrollViewDidEndDecelerating:scrollView];
     }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     
-    if ([self.scrollDelegate respondsToSelector:@selector(zs_pageViewDidEndDragging:willDecelerate:)])
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)])
     {
-        [self.scrollDelegate zs_pageViewDidEndDragging:scrollView willDecelerate:decelerate];
+        [self.delegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
     }
 }
 
@@ -311,7 +311,7 @@ static const NSInteger __displayLinkCount = 8;
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     
-    return UIEdgeInsetsZero;
+    return self.pageViewInset;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
