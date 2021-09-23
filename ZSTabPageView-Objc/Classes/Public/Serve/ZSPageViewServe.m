@@ -256,9 +256,9 @@ static const NSInteger __displayLinkCount = 8;
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
  
-    if ([self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)])
+    if ([self.delegate respondsToSelector:@selector(scrollViewWillBeginDragging:)])
     {
-        [self.delegate scrollViewDidEndDecelerating:scrollView];
+        [self.delegate scrollViewWillBeginDragging:scrollView];
     }
 }
 
