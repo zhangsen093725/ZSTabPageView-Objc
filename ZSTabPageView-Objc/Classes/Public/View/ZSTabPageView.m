@@ -123,14 +123,37 @@
     {
         self.tabView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), self.tabViewHeight);
         self.spaceView.frame = CGRectMake(self.spaceViewInsets.left, CGRectGetMaxY(self.tabView.frame) + self.spaceViewInsets.top - self.spaceViewInsets.bottom, CGRectGetWidth(self.bounds) - self.spaceViewInsets.left - self.spaceViewInsets.right, self.spaceViewHeight);
-        self.pageView.frame = CGRectMake(0, CGRectGetMaxY(self.tabView.frame), CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - CGRectGetMaxY(self.tabView.frame));
+        
+        CGFloat pageViewY = self.spaceViewHeight > 1 ? CGRectGetMaxY(self.spaceView.frame) : CGRectGetMaxY(self.tabView.frame);
+        self.pageView.frame = CGRectMake(0, pageViewY, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) - pageViewY);
     }
     else
     {
         self.tabView.frame = CGRectMake(0, 0, self.tabViewHeight, CGRectGetHeight(self.bounds));
         self.spaceView.frame = CGRectMake(CGRectGetMaxX(self.tabView.frame) + self.spaceViewInsets.left - self.spaceViewInsets.right, self.spaceViewInsets.top, self.spaceViewHeight, CGRectGetHeight(self.bounds) - self.spaceViewInsets.top - self.spaceViewInsets.bottom);
-        self.pageView.frame = CGRectMake(CGRectGetMaxX(self.tabView.frame), 0, CGRectGetWidth(self.bounds) - CGRectGetMaxX(self.spaceView.frame), CGRectGetHeight(self.bounds));
+        
+        CGFloat pageViewX = self.spaceViewHeight > 1 ? CGRectGetMaxY(self.spaceView.frame) : CGRectGetMaxY(self.tabView.frame);
+        self.pageView.frame = CGRectMake(pageViewX, 0, CGRectGetWidth(self.bounds) - pageViewX, CGRectGetHeight(self.bounds));
     }
+}
+
+
+- (void)setTabViewHeight:(CGFloat)tabViewHeight {
+    
+    _tabViewHeight = tabViewHeight;
+    [self layoutSubviews];
+}
+
+- (void)setSpaceViewHeight:(CGFloat)spaceViewHeight {
+    
+    _spaceViewHeight = spaceViewHeight;
+    [self layoutSubviews];
+}
+
+- (void)setSpaceViewInsets:(UIEdgeInsets)spaceViewInsets {
+    
+    _spaceViewInsets = spaceViewInsets;
+    [self layoutSubviews];
 }
 
 
