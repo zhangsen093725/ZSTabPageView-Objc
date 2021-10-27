@@ -132,7 +132,7 @@
         self.tabView.frame = CGRectMake(0, 0, self.tabViewHeight, CGRectGetHeight(self.bounds));
         self.spaceView.frame = CGRectMake(CGRectGetMaxX(self.tabView.frame) + self.spaceViewInsets.left - self.spaceViewInsets.right, self.spaceViewInsets.top, self.spaceViewHeight, CGRectGetHeight(self.bounds) - self.spaceViewInsets.top - self.spaceViewInsets.bottom);
         
-        CGFloat pageViewX = self.spaceViewHeight > 1 ? CGRectGetMaxY(self.spaceView.frame) : CGRectGetMaxY(self.tabView.frame);
+        CGFloat pageViewX = self.spaceViewHeight > 1 ? CGRectGetMaxX(self.spaceView.frame) : CGRectGetMaxX(self.tabView.frame);
         self.pageView.frame = CGRectMake(pageViewX, 0, CGRectGetWidth(self.bounds) - pageViewX, CGRectGetHeight(self.bounds));
     }
 }
