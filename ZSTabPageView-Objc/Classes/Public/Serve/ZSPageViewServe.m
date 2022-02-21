@@ -306,7 +306,10 @@ static const NSInteger __displayLinkCount = 8;
 # pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return collectionView.bounds.size;
+    CGFloat width = CGRectGetWidth(collectionView.bounds) - _pageViewInset.left - _pageViewInset.right;
+    CGFloat height = CGRectGetHeight(collectionView.bounds) - _pageViewInset.top - _pageViewInset.bottom;
+    
+    return (width > 0 && height > 0) ? CGSizeMake(width, height) : CGSizeZero;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
