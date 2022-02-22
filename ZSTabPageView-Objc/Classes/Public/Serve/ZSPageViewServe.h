@@ -15,6 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param index 当前Page的索引
 - (UIView *)zs_pageViewCellForItemAtIndex:(NSInteger)index;
 
+@optional
+/// Page 需要展示的View Frame，默认是 PageView 中的 Cell bounds
+/// @param index 当前Page的索引
+/// @param superView 父视图
+- (CGRect)zs_pageViewCellFrameForItemAtIndex:(NSInteger)index superView:(UIView *)superView;
+
 @end
 
 

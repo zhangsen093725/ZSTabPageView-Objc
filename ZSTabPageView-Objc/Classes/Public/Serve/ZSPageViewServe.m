@@ -184,7 +184,7 @@ static const NSInteger __displayLinkCount = 8;
 
 - (void)zs_showCellContentCacheView {
     
-    UICollectionViewCell *cell = [self.pageView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectIndex inSection:0]];
+    UICollectionViewCell *cell = [self.pageView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_selectIndex inSection:0]];
     
     if (cell == nil) { return; }
     
@@ -194,10 +194,28 @@ static const NSInteger __displayLinkCount = 8;
     {
         view = [self.dataSource zs_pageViewCellForItemAtIndex:_selectIndex];
         [_cellContentCacheViewMap setObject:view forKey:@(_selectIndex)];
-        [cell.contentView addSubview:view];
     }
     
-    view.frame = cell.contentView.bounds;
+    [self zs_cellContentView:cell.contentView layoutCaCheViewForIndex:_selectIndex];
+}
+
+
+- (void)zs_cellContentView:(UIView *)contentView layoutCaCheViewForIndex:(NSInteger)index {
+    
+    UIView *view = self.cellContentCacheViewMap[@(index)];
+    
+    [contentView addSubview:view];
+    
+    if ([self.dataSource respondsToSelector:@selector(zs_pageViewCellFrameForItemAtIndex:superView:)])
+    {
+        view.frame = [self.dataSource zs_pageViewCellFrameForItemAtIndex:index superView:contentView];
+    }
+    else
+    {
+        view.frame = contentView.bounds;
+    }
+    
+    view.hidden = NO;
 }
 
 # pragma mark - UIScrollViewDelegate
@@ -290,14 +308,7 @@ static const NSInteger __displayLinkCount = 8;
         [subView removeFromSuperview];
     }
     
-    UIView *view = self.cellContentCacheViewMap[@(indexPath.item)];
-    
-    if (view != nil)
-    {
-        [cell.contentView addSubview:view];
-        view.hidden = NO;
-        view.frame = cell.contentView.bounds;
-    }
+    [self zs_cellContentView:cell.contentView layoutCaCheViewForIndex:indexPath.item];
     
     return cell;
 }
