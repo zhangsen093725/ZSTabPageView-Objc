@@ -118,6 +118,10 @@
 - (void)layoutSubviews {
     
     [super layoutSubviews];
+    [self customLayoutSubviews];
+}
+
+- (void)customLayoutSubviews {
     
     if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal)
     {
@@ -136,7 +140,6 @@
         self.pageView.frame = CGRectMake(pageViewX, 0, CGRectGetWidth(self.bounds) - pageViewX, CGRectGetHeight(self.bounds));
     }
 }
-
 
 - (void)setTabViewHeight:(CGFloat)tabViewHeight {
     

@@ -62,6 +62,8 @@
 # pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
+    [super scrollViewDidScroll:scrollView];
+    
     if (scrollView != self.tableView) return;
     
     if (CGSizeEqualToSize(scrollView.contentSize, CGSizeZero)) { return; }
